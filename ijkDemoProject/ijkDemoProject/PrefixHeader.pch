@@ -1,0 +1,30 @@
+//
+//  PrefixHeader.pch
+//  ijkDemoProject
+//
+//  Created by foolsparadise on 21/10/2017.
+//  Copyright © 2016 github.com/foolsparadise All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define MAS_SHORTHAND
+//define this constant if you want to enable auto-boxing for default syntax
+#define MAS_SHORTHAND_GLOBALS
+#import "Masonry.h"
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define DEFAULT_APP_FONT @"helvetica"
+#define DEFAULT_APP_FONT_BOLD @"STHeitiSC-Medium"
+#define MY_SMALL_FONT [UIFont systemFontOfSize:ConvertFontWithPx(12)]
+#define IMAGEWITHNAME(r) [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:r]]
+
+// Created by github.com/foolsparadise on 21/10/2017
+
+#endif /* PrefixHeader_pch */
