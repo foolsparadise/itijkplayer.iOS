@@ -8,9 +8,13 @@ If file component is .mp4 or .mov, use system support framework MPMoviePlayerCon
 ## ~~ijkplayer.bak folder~~  
 ~~forked from https://github.com/Bilibili/ijkplayer at 2017-6-9 and no modify~~  
 ~~removed! If you need, git clone https://github.com/Bilibili/ijkplayer~~  
+## ijkDemoProject folder  
+I writed a Demo for howto use , within one player demo UI  
 ## IJKDemoFileDownload .h .m <- i created  
 create for type check  
-## IJKMoviePlayerViewController .m <- i modified  
+## IJKDemoMediaControl .h .m <- i created  
+create for media control panel  
+## IJKMoviePlayerViewController .m <- i modified , only for merge or comparison forked IJKMoviePlayerViewController file  
 forked from https://github.com/Bilibili/ijkplayer at 2017-6-9 and i modify
 ## How to use  
 1. git clone https://github.com/Bilibili/ijkplayer  
