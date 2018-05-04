@@ -135,11 +135,11 @@
     dispatch_group_wait(queueGroup, DISPATCH_TIME_FOREVER);
     
     NSInteger count = 0;
-    while ([NSData dataWithContentsOfFile:datPath].length<16) {
+    while ([NSData dataWithContentsOfFile:datPath].length<32) {
         count++;
-        if(count>3)
+        if(count>10)
             return @"avi";
-        sleep(1);
+        usleep(10);
     }
     
     
