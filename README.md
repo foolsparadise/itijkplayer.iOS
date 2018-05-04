@@ -1,22 +1,24 @@
 # ijkplayerDemo  
-This project based on https://github.com/Bilibili/ijkplayer. An optimized tutorial Demo for how to use it.  
+This project based on https://github.com/Bilibili/ijkplayer.    
+基于官方并做了一些小改动，An optimized tutorial Demo for how to use it.  
 So releaseNote:   
-添加文件类型判断Add file type check.  
-优化播放性能Optimize ijkplayer performance.  
-添加播放格式兼容Increase ijkplayer format compatibility.  
-iOS系统支持的文件就用系统播放器If file component is .mp4 or .mov, use system support framework MPMoviePlayerController(embed in ijkplayer framework), others use ijkplayer framework.  
+添加文件类型判断，Add file type check.  
+优化播放性能，Optimize ijkplayer performance.  
+添加播放格式兼容，Increase ijkplayer format compatibility.  
+iOS系统支持的文件就用系统播放器，If file component is .mp4 or .mov, use system support framework MPMoviePlayerController(embed in ijkplayer framework), others use ijkplayer framework.  
 ## ~~ijkplayer.bak folder~~  
 ~~forked from https://github.com/Bilibili/ijkplayer at 2017-6-9 and no modify~~  
-~~removed, and if you need, goto and git clone https://github.com/Bilibili/ijkplayer~~  
+~~想做个备份，考虑工程太大，就删了，removed, and if you need, goto and git clone https://github.com/Bilibili/ijkplayer~~  
 ## ijkDemoProject folder  
 我写了个Demo，演示如何使用，工程中有内嵌友好的UI，可直接用起来！I writed a Demo for howto use , within one player demo UI  
 ## IJKDemoFileDownload .h .m <- i created  
 create for type check  
 ## IJKDemoMediaControl .h .m <- i created  
 create for media control panel  
-## IJKMoviePlayerViewController .m <- i modified . This file in ijkplayerDemo/ijkDemoProject/ijkDemoProject/ijkPlayer/ folder  
+## IJKMoviePlayerViewController .m <- i modified  
+修改的文件在此目录中找，This file in folder ijkplayerDemo/ijkDemoProject/ijkDemoProject/ijkPlayer/   
 forked from https://github.com/Bilibili/ijkplayer at 2017-6-9 , and i modify in 2018-2-5  
-## How to use  
+## 此Demo如何用起来，How to use  
 1. git clone https://github.com/Bilibili/ijkplayer  
 cd config  
 rm module.sh  
@@ -56,7 +58,7 @@ IJKMoviePlayerViewController .m <- i modified
 4. add ios/IJKMediaDemo/XCAssets/MoviePlayerImages.xcassets folder to your project   
 Now, File List  
 ![DemoProjectFilelist.png](https://github.com/foolsparadise/ijkplayerDemo/blob/master/DemoProjectFilelist.png)  
-5. be sure files has code:  
+5. be sure files has this code:  
 ```  
 AppDelegate.h  
 #import <UIKit/UIKit.h>  
@@ -85,7 +87,8 @@ AppDelegate.m
         [self.navigationController popViewControllerAnimated:NO];  
     }];  
 ```  
-7. About ijkplayer, VLC, mediaPlayer.framework/MPMoviePlayerController, AVFounditon.framework/AVPlayer, AVKit/AVPlayerViewcontroller  
+7. 我的一点有关ijkplayer的意见，About ijkplayer  
+关于几个库的比较，ijkplayer, VLC, mediaPlayer.framework/MPMoviePlayerController, AVFounditon.framework/AVPlayer, AVKit/AVPlayerViewcontroller  
 After test video files,  
 4k KFHD (3840×2160) resolution, length of at least 1 hours video, different video formats,  
-i suggest use ijkplayer, because its better than others, now at 2017-6.  
+建议使用ijkplayer，i suggest use ijkplayer, because its better than others, now at 2017-6.  
