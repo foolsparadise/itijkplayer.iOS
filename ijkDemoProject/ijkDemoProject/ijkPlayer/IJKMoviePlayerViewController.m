@@ -91,9 +91,9 @@
  */
 - (NSString *)contentTypeOfVideo:(NSURL *)videoURL
 {
-    // system DCIM
+    // system DCIM 系统相册
     //file:///var/mobile/Media/DCIM/101APPLE/IMG_xxxx.mp4
-    // sandbox
+    // sandbox 沙盒
     //file:///var/mobile/Containers/Data/Application/xxxx-xxx-xxx-xxx-xxx-xxxx/Documents/xxxx.mov
     
     if([videoURL.absoluteString containsString:@"/var/mobile/Media/DCIM"]) { // system DCIM 系统相册
@@ -104,9 +104,22 @@
         uint8_t c;
         [data getBytes:&c length:1];
         switch (c) {
-                // file type check, can add by yourself, 遇到问题视频可以自已加处理
+            // file type check, can add by yourself, 遇到问题视频可以自已加处理
             case 0x52: { NSLog(@"avi"); return @"avi"; }
-                // case 0x6D: { NSLog(@"mov"); return @"mov"; }
+            // case 0x6D: { NSLog(@"mov"); return @"mov"; }
+            case 0x00: {
+                if ([data length] < 12)
+                {
+                    return @"avi";
+                }
+                if (data.length >= 12) {
+                    //....ftypqt 此处为个别iOS产品，比如iPhoneX使用iOS11来拍摄4K视频，文件头
+                    NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding];
+                    if ([testString isEqualToString:@"ftypqt"]) {
+                        return @"mov";
+                    }
+                }
+            }
         }
         return @"mov";
     }
@@ -134,9 +147,22 @@
     uint8_t c;
     [data getBytes:&c length:1];
     switch (c) {
-            // file type check, can add by yourself, 遇到问题视频可以自已加处理
+        // file type check, can add by yourself, 遇到问题视频可以自已加处理
         case 0x52: { NSLog(@"avi"); return @"avi"; }
-            // case 0x6D: { NSLog(@"mov"); return @"mov"; }
+        // case 0x6D: { NSLog(@"mov"); return @"mov"; }
+        case 0x00: {
+            if ([data length] < 12)
+            {
+                return @"avi";
+            }
+            if (data.length >= 12) {
+                //....ftypqt 此处为个别iOS产品，比如iPhoneX使用iOS11来拍摄4K视频，文件头
+                NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding];
+                if ([testString isEqualToString:@"ftypqt"]) {
+                    return @"mov";
+                }
+            }
+        }
             
     }
     
