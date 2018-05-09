@@ -27,6 +27,52 @@
 
 @implementation IJKDemoFileDownload
 
++(void)IJKDemoFileDownloadWithURL:(NSString *)urldown WithBlock:(void (^)(bool isOK))callback
+{
+    
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *datPath = [documentsDirectory stringByAppendingPathComponent:@"temp.dat"];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:datPath error:NULL];
+    
+    long long startSize=0;
+    long long endSize=1048578;
+    //设置请求的字段的范围
+    NSString *range=[NSString stringWithFormat:@"Bytes=%lld-%lld",startSize,endSize];
+    NSLog(@"%@",range);
+    
+    NSMutableURLRequest *request= [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urldown] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5.0f];
+    
+    //通过请求头设置数据请求范围.要对请求进行操作,肯定要对请求头做操作!
+    [request setValue:range forHTTPHeaderField:@"Range"];
+    
+    NSURLResponse *response;
+    NSError *error;
+    //注意这里使用同步请求，避免文件块追加顺序错误
+    NSData *data= [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(!error){
+        //NSLog(@"data.length=(%lld)",(long long)data.length);
+        NSFileHandle *fp = [NSFileHandle fileHandleForWritingAtPath:datPath];
+        if(fp == nil) {
+            [data writeToFile:datPath atomically:YES];
+        }
+        else {
+            [fp seekToEndOfFile];
+            [fp writeData:data];
+        }
+        [fp closeFile];
+    }
+    else{
+        //NSLog(@"error:%@",error.localizedDescription);
+    }
+    //if([NSData dataWithContentsOfFile:datPath].length>64)
+    {
+        if(callback)
+            callback(YES);
+    }
+    
+}
+
 - (void)IJKDemoFileDownloadWithURL:(NSURL *)url
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:1 timeoutInterval:15];

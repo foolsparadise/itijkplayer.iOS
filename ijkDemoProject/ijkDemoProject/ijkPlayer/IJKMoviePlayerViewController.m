@@ -124,8 +124,12 @@
         return @"mov";
     }
     else {}
+    
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
     NSString *datPath = [documentsDirectory stringByAppendingPathComponent:@"temp.dat"];
+    
+    
+    /*
     dispatch_queue_t aQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t queueGroup = dispatch_group_create();
     dispatch_group_async(queueGroup, aQueue, ^{
@@ -141,9 +145,20 @@
             return @"avi";
         usleep(10);
     }
+     */
+    //2018.5.优化，注释掉代码块并使用下面代码块
+    dispatch_semaphore_t semaphore_IJKDemoFileDownload = dispatch_semaphore_create(0);
+    dispatch_queue_t queue_IJKDemoFileDownload  = dispatch_queue_create("semaphore_IJKDemoFileDownload", NULL);
+    dispatch_async(queue_IJKDemoFileDownload , ^(void) {
+        [IJKDemoFileDownload IJKDemoFileDownloadWithURL:videoURL.absoluteString WithBlock:^(bool isOK) {
+            dispatch_semaphore_signal(semaphore_IJKDemoFileDownload);
+        }];
+    });
+    dispatch_semaphore_wait(semaphore_IJKDemoFileDownload,DISPATCH_TIME_FOREVER);
     
     
     NSData *data = [NSData dataWithContentsOfFile:datPath];
+    if([NSData dataWithContentsOfFile:datPath].length<64) return @"avi";
     uint8_t c;
     [data getBytes:&c length:1];
     switch (c) {
