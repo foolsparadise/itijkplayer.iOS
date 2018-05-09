@@ -5,17 +5,17 @@ ReleaseNote:
 添加所播放的视频文件类型判断区分，优化播放性能和效果，添加播放格式兼容，iOS系统支持的文件就用系统播放器MPMoviePlayerController(embed in ijkplayer framework), 其它用ijkplayer.  
 Add file type check , Optimize ijkplayer performance.Increase ijkplayer format compatibility.If file component is .mp4 or .mov, use system support framework MPMoviePlayerController(embed in ijkplayer framework), others use ijkplayer framework.  
 ## ~~ijkplayer.bak folder~~  
-~~forked from https://github.com/Bilibili/ijkplayer at 2017-6-9 and no modify~~  
+~~forked from https://github.com/Bilibili/ijkplayer at 2017-6 and no modify~~  
 ~~想做个备份，考虑工程太大，就删了，removed, and if you need, goto and git clone https://github.com/Bilibili/ijkplayer~~  
 ## ijkDemoProject folder  
 我写了个Demo，演示如何使用，工程中有内嵌友好的UI，可直接用起来！I writed a Demo for howto use , within one player demo UI  
-## IJKDemoFileDownload .h .m <- i created  
+## IJKDemoFileDownload .h .m <- 我创建的 i created  
 create for type check  
-## IJKDemoMediaControl .h .m <- i created  
+## IJKDemoMediaControl .h .m <- 我创建的 i created  
 create for media control panel  
-## IJKMoviePlayerViewController .m <- i modified  
+## IJKMoviePlayerViewController .m <- 我修改的 i modified  
 修改的文件在此目录中找，This file in folder ijkplayerDemo/ijkDemoProject/ijkDemoProject/ijkPlayer/   
-forked from https://github.com/Bilibili/ijkplayer at 2017-6-9 , and i modify in 2018-2-5  
+forked from https://github.com/Bilibili/ijkplayer at 2017-6 , and i modify in 2018-5  
 ## 此Demo如何用起来，How to use  
 1. git clone https://github.com/Bilibili/ijkplayer  
 cd config  
@@ -24,7 +24,7 @@ ln -s module-default.sh module.sh
 complied IJKMediaFramework.framework, (open ijkplayer.bak folder see README.md how to , or goto https://github.com/Bilibili/ijkplayer to see how to)  
 2. add framework  
 ```  
-IJKMediaFramework.framework <- you complied  
+IJKMediaFramework.framework <- 你编译的库 you complied  
 libstdc++.tbd  
 AudioToolbox.framework  
 AVFoundation.framework  
@@ -50,8 +50,8 @@ IJKMoviePlayerViewController .h .m .xib
 to your project.  
 And copy i modified files to your project  
 ```  
-IJKDemoFileDownload .h .m <- i created  
-IJKMoviePlayerViewController .m <- i modified  
+IJKDemoFileDownload .h .m <- 我创建的 i created  
+IJKMoviePlayerViewController .m <- 我修改的 i modified  
 ```  
 4. add ios/IJKMediaDemo/XCAssets/MoviePlayerImages.xcassets folder to your project   
 Now, File List  
