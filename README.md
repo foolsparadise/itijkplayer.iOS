@@ -1,11 +1,9 @@
 # ijkplayerDemo  
-This project based on https://github.com/Bilibili/ijkplayer.    
+Demo基于ijkplayer官方 This project based on https://github.com/Bilibili/ijkplayer.    
 基于官方并做了一些小改动，An optimized tutorial Demo for how to use it.  
-So releaseNote:   
-添加文件类型判断，Add file type check.  
-优化播放性能，Optimize ijkplayer performance.  
-添加播放格式兼容，Increase ijkplayer format compatibility.  
-iOS系统支持的文件就用系统播放器，If file component is .mp4 or .mov, use system support framework MPMoviePlayerController(embed in ijkplayer framework), others use ijkplayer framework.  
+ReleaseNote:   
+添加所播放的视频文件类型判断区分，优化播放性能和效果，添加播放格式兼容，iOS系统支持的文件就用系统播放器MPMoviePlayerController(embed in ijkplayer framework), 其它用ijkplayer.  
+Add file type check , Optimize ijkplayer performance.Increase ijkplayer format compatibility.If file component is .mp4 or .mov, use system support framework MPMoviePlayerController(embed in ijkplayer framework), others use ijkplayer framework.  
 ## ~~ijkplayer.bak folder~~  
 ~~forked from https://github.com/Bilibili/ijkplayer at 2017-6-9 and no modify~~  
 ~~想做个备份，考虑工程太大，就删了，removed, and if you need, goto and git clone https://github.com/Bilibili/ijkplayer~~  
@@ -50,7 +48,7 @@ IJKMediaControl .h .m
 IJKMoviePlayerViewController .h .m .xib
 ```  
 to your project.  
-copy i modified files to your project  
+And copy i modified files to your project  
 ```  
 IJKDemoFileDownload .h .m <- i created  
 IJKMoviePlayerViewController .m <- i modified  
