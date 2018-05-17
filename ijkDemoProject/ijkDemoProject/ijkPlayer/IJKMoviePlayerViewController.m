@@ -106,6 +106,7 @@
         switch (c) {
             // file type check, can add by yourself, 遇到问题视频可以自已加处理
             case 0x52: { NSLog(@"avi"); return @"avi"; }
+	    case 0xff: { NSLog(@"avi"); return @"avi"; }
             // case 0x6D: { NSLog(@"mov"); return @"mov"; }
             case 0x00: {
                 if ([data length] < 12)
@@ -164,6 +165,7 @@
     switch (c) {
         // file type check, can add by yourself, 遇到问题视频可以自已加处理
         case 0x52: { NSLog(@"avi"); return @"avi"; }
+	case 0xff: { NSLog(@"avi"); return @"avi"; }
         // case 0x6D: { NSLog(@"mov"); return @"mov"; }
         case 0x00: {
             if ([data length] < 12)
