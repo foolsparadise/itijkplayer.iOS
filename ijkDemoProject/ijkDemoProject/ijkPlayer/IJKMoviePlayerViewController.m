@@ -114,15 +114,25 @@
                     return @"avi";
                 }
                 if (data.length >= 12) {
-                    //....ftypqt 此处为个别iOS产品，比如iPhoneX使用iOS11来拍摄4K视频，文件头
-                    NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding];
-                    if ([testString isEqualToString:@"ftypqt"]) {
+                    //....ftyp此处为文件类型头
+                    NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding].lowercaseString;
+                    if ([testString isEqualToString:@"ftypqt"] ||
+                        [testString isEqualToString:@"ftypisom"] ||
+                        [testString isEqualToString:@"ftyp3gp"] ||
+                        [testString isEqualToString:@"ftypmmp4"] ||
+                        [testString isEqualToString:@"ftyp3g2a"] ||
+                        [testString isEqualToString:@"ftypm4a"] ||
+                        [testString isEqualToString:@"ftypm4v"] ||
+                        [testString isEqualToString:@"ftypmp4"] ||
+                        [testString isEqualToString:@"ftypmp42"] ||
+                        [testString isEqualToString:@"ftypf4v"]
+                        ) {
                         return @"mov";
                     }
                 }
             }
         }
-        return @"mov";
+        return @"avi";
     }
     else {}
     
@@ -168,22 +178,32 @@
 	case 0xff: { NSLog(@"avi"); return @"avi"; }
         // case 0x6D: { NSLog(@"mov"); return @"mov"; }
         case 0x00: {
-            if ([data length] < 12)
-            {
-                return @"avi";
-            }
-            if (data.length >= 12) {
-                //....ftypqt 此处为个别iOS产品，比如iPhoneX使用iOS11来拍摄4K视频，文件头
-                NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding];
-                if ([testString isEqualToString:@"ftypqt"]) {
-                    return @"mov";
+                if ([data length] < 12)
+                {
+                    return @"avi";
+                }
+                if (data.length >= 12) {
+                    //....ftyp此处为文件类型头
+                    NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding].lowercaseString;
+                    if ([testString isEqualToString:@"ftypqt"] ||
+                        [testString isEqualToString:@"ftypisom"] ||
+                        [testString isEqualToString:@"ftyp3gp"] ||
+                        [testString isEqualToString:@"ftypmmp4"] ||
+                        [testString isEqualToString:@"ftyp3g2a"] ||
+                        [testString isEqualToString:@"ftypm4a"] ||
+                        [testString isEqualToString:@"ftypm4v"] ||
+                        [testString isEqualToString:@"ftypmp4"] ||
+                        [testString isEqualToString:@"ftypmp42"] ||
+                        [testString isEqualToString:@"ftypf4v"]
+                        ) {
+                        return @"mov";
+                    }
                 }
             }
-        }
             
     }
     
-    return @"mov";
+    return @"avi";
 }
 #define EXPECTED_IJKPLAYER_VERSION (1 << 16) & 0xFF) |
 - (void)viewDidLoad
