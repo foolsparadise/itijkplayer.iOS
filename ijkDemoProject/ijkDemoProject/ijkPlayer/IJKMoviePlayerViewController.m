@@ -116,17 +116,17 @@
                 if (data.length >= 12) {
                     //....ftyp此处为文件类型头
                     NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding].lowercaseString;
-                    if ([testString isEqualToString:@"ftypqt"] ||
-                        [testString isEqualToString:@"ftypisom"] ||
-                        [testString isEqualToString:@"ftyp3gp"] ||
-                        [testString isEqualToString:@"ftypmmp4"] ||
-                        [testString isEqualToString:@"ftyp3g2a"] ||
-                        [testString isEqualToString:@"ftypm4a"] ||
-                        [testString isEqualToString:@"ftypm4v"] ||
-                        [testString isEqualToString:@"ftypmp4"] ||
-                        [testString isEqualToString:@"ftypmp42"] ||
-                        [testString isEqualToString:@"ftypf4v"]
-                        ) {
+                    if ([testString hasPrefix:@"ftypqt"] ||
+                    [testString hasPrefix:@"ftypisom"] ||
+                    [testString hasPrefix:@"ftyp3gp"] ||
+                    [testString hasPrefix:@"ftypmmp4"] ||
+                    [testString hasPrefix:@"ftyp3g2a"] ||
+                    [testString hasPrefix:@"ftypm4a"] ||
+                    [testString hasPrefix:@"ftypm4v"] ||
+                    [testString hasPrefix:@"ftypmp4"] ||
+                    [testString hasPrefix:@"ftypmp42"] ||
+                    [testString hasPrefix:@"ftypf4v"]
+                    ) {
                         return @"mov";
                     }
                 }
@@ -185,17 +185,17 @@
                 if (data.length >= 12) {
                     //....ftyp此处为文件类型头
                     NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding].lowercaseString;
-                    if ([testString isEqualToString:@"ftypqt"] ||
-                        [testString isEqualToString:@"ftypisom"] ||
-                        [testString isEqualToString:@"ftyp3gp"] ||
-                        [testString isEqualToString:@"ftypmmp4"] ||
-                        [testString isEqualToString:@"ftyp3g2a"] ||
-                        [testString isEqualToString:@"ftypm4a"] ||
-                        [testString isEqualToString:@"ftypm4v"] ||
-                        [testString isEqualToString:@"ftypmp4"] ||
-                        [testString isEqualToString:@"ftypmp42"] ||
-                        [testString isEqualToString:@"ftypf4v"]
-                        ) {
+                    if ([testString hasPrefix:@"ftypqt"] ||
+                    [testString hasPrefix:@"ftypisom"] ||
+                    [testString hasPrefix:@"ftyp3gp"] ||
+                    [testString hasPrefix:@"ftypmmp4"] ||
+                    [testString hasPrefix:@"ftyp3g2a"] ||
+                    [testString hasPrefix:@"ftypm4a"] ||
+                    [testString hasPrefix:@"ftypm4v"] ||
+                    [testString hasPrefix:@"ftypmp4"] ||
+                    [testString hasPrefix:@"ftypmp42"] ||
+                    [testString hasPrefix:@"ftypf4v"]
+                    ) {
                         return @"mov";
                     }
                 }
