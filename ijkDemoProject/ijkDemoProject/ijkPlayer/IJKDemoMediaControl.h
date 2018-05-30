@@ -47,6 +47,8 @@ typedef NS_ENUM(NSInteger, PanDirection){
 @property (strong, nonatomic)  UIButton       *backBtn;
 /** 视频名 */
 @property (strong, nonatomic)  UILabel        *titleLabel;
+/** 是否使用系统播放器 */
+@property (nonatomic,strong)   UISwitch       *swithView;
 /** 开始播放按钮 */
 @property (strong, nonatomic)  UIButton       *playBtn;
 /** 当前播放时长label */
