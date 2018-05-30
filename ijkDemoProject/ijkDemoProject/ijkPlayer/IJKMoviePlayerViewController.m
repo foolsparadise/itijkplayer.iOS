@@ -118,14 +118,7 @@
                     NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding].lowercaseString;
                     if ([testString hasPrefix:@"ftypqt"] ||
                     [testString hasPrefix:@"ftypisom"] ||
-                    [testString hasPrefix:@"ftyp3gp"] ||
-                    [testString hasPrefix:@"ftypmmp4"] ||
-                    [testString hasPrefix:@"ftyp3g2a"] ||
-                    [testString hasPrefix:@"ftypm4a"] ||
-                    [testString hasPrefix:@"ftypm4v"] ||
-                    [testString hasPrefix:@"ftypmp4"] ||
-                    [testString hasPrefix:@"ftypmp42"] ||
-                    [testString hasPrefix:@"ftypf4v"]
+                    [testString hasPrefix:@"ftypmp42"]
                     ) {
                         return @"mov";
                     }
@@ -187,14 +180,7 @@
                     NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(4, 8)] encoding:NSASCIIStringEncoding].lowercaseString;
                     if ([testString hasPrefix:@"ftypqt"] ||
                     [testString hasPrefix:@"ftypisom"] ||
-                    [testString hasPrefix:@"ftyp3gp"] ||
-                    [testString hasPrefix:@"ftypmmp4"] ||
-                    [testString hasPrefix:@"ftyp3g2a"] ||
-                    [testString hasPrefix:@"ftypm4a"] ||
-                    [testString hasPrefix:@"ftypm4v"] ||
-                    [testString hasPrefix:@"ftypmp4"] ||
-                    [testString hasPrefix:@"ftypmp42"] ||
-                    [testString hasPrefix:@"ftypf4v"]
+                    [testString hasPrefix:@"ftypmp42"]
                     ) {
                         return @"mov";
                     }
@@ -223,6 +209,8 @@
 
     self.playControll = [[IJKDemoMediaControl alloc] initWithFrame:self.view.bounds];
     [self.playControll.backBtn addTarget:self action:@selector(dismissViewController) forControlEvents:UIControlEventTouchUpInside];
+    [self.playControll.swithView addTarget:self action:@selector(swithViewClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.playControll.fullScreenBtn addTarget:self action:@selector(fullScreenBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.playControll.playBtn addTarget:self action:@selector(onClickPlay:) forControlEvents:UIControlEventTouchUpInside];//onClickPlay
@@ -239,6 +227,9 @@
     if (item) {
         self.playControll.titleLabel.text = item.title;
     }
+    
+    [self.playControll.swithView setOn:NO];
+	
     [IJKFFMoviePlayerController checkIfFFmpegVersionMatch:YES];
     // [IJKFFMoviePlayerController checkIfPlayerVersionMatch:YES major:1 minor:0 micro:0];
 
@@ -449,6 +440,16 @@
 
 
 #pragma mark - touches
+-(void)swithViewClick:(UIButton *)sender
+{
+    if(self.playControll.swithView.on) {
+        [self.playControll.swithView setOn:YES];
+    }
+    else {
+        [self.playControll.swithView setOn:NO];
+    }
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     UITouch *anyTouch = [touches anyObject];
