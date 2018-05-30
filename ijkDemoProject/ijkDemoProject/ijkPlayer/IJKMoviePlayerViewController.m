@@ -101,7 +101,7 @@
     }
     else if ([videoURL.absoluteString containsString:@"/var/mobile/Containers/Data/Applicatio"]) { // sandbox 沙盒文件
 	if ([[self readFromPlistByKey:@"onlyUseIJK"] floatValue] != 0) {
-            //只使用ijk，mov和mp4兼容格式大而全，但高清4kmov播放卡顿
+            //只使用ijk，mov和mp4兼容格式大而全，但高清4kmov或4kmp4播放卡顿
             return @"avi";
         }
         NSData *data = [NSData dataWithContentsOfURL:videoURL];
@@ -133,7 +133,7 @@
     }
     else {
 	if ([[self readFromPlistByKey:@"onlyUseIJK"] floatValue] != 0) {
-            //只使用ijk，mov和mp4兼容格式大而全，但高清4kmov播放卡顿
+            //只使用ijk，mov和mp4兼容格式大而全，但高清4kmov或4kmp4播放卡顿
             return @"avi";
         }
     }
@@ -238,7 +238,7 @@
     }
     
     if ([[self readFromPlistByKey:@"onlyUseIJK"] floatValue] == 1) {
-        //只使用ijk，mov和mp4兼容格式大脾全，但高清4kmov播放卡顿
+        //只使用ijk，mov和mp4兼容格式大而全，但高清4kmov或4kmp4播放卡顿
         [self.playControll.swithView setOn:YES]; //亮
     }
     else {
