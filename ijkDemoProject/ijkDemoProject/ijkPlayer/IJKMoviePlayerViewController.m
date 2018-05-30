@@ -100,8 +100,8 @@
         return @"mov";
     }
     else if ([videoURL.absoluteString containsString:@"/var/mobile/Containers/Data/Applicatio"]) { // sandbox 沙盒文件
-	if ([[self readFromPlistByKey:@"Onlyijkplayer"] floatValue] != 0) {
-            //只使用ijk，mov和mp4兼容格式大脾全，但高清4kmov播放卡顿
+	if ([[self readFromPlistByKey:@"onlyUseIJK"] floatValue] != 0) {
+            //只使用ijk，mov和mp4兼容格式大而全，但高清4kmov播放卡顿
             return @"avi";
         }
         NSData *data = [NSData dataWithContentsOfURL:videoURL];
@@ -132,8 +132,8 @@
         return @"avi";
     }
     else {
-	if ([[self readFromPlistByKey:@"Onlyijkplayer"] floatValue] != 0) {
-            //只使用ijk，mov和mp4兼容格式大脾全，但高清4kmov播放卡顿
+	if ([[self readFromPlistByKey:@"onlyUseIJK"] floatValue] != 0) {
+            //只使用ijk，mov和mp4兼容格式大而全，但高清4kmov播放卡顿
             return @"avi";
         }
     }
@@ -460,11 +460,11 @@
 {
     if(self.playControll.swithView.on) {
         [self.playControll.swithView setOn:YES];
-	    [self writeToPlist:@"Onlyijkplayer" :@"1"];
+	    [self writeToPlist:@"onlyUseIJK" :@"1"];
     }
     else {
         [self.playControll.swithView setOn:NO];
-	    [self writeToPlist:@"Onlyijkplayer" :@"0"];
+	    [self writeToPlist:@"onlyUseIJK" :@"0"];
     }
 }
 -(NSString *)readFromPlistByKey:(NSString *)key
