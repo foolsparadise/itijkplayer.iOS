@@ -100,6 +100,10 @@
         return @"mov";
     }
     else if ([videoURL.absoluteString containsString:@"/var/mobile/Containers/Data/Applicatio"]) { // sandbox 沙盒文件
+	if ([[self readFromPlistByKey:@"Onlyijkplayer"] floatValue] != 0) {
+            //只使用ijk，mov和mp4兼容格式大脾全，但高清4kmov播放卡顿
+            return @"avi";
+        }
         NSData *data = [NSData dataWithContentsOfURL:videoURL];
         uint8_t c;
         [data getBytes:&c length:1];
@@ -127,7 +131,12 @@
         }
         return @"avi";
     }
-    else {}
+    else {
+	if ([[self readFromPlistByKey:@"Onlyijkplayer"] floatValue] != 0) {
+            //只使用ijk，mov和mp4兼容格式大脾全，但高清4kmov播放卡顿
+            return @"avi";
+        }
+    }
     
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
     NSString *datPath = [documentsDirectory stringByAppendingPathComponent:@"temp.dat"];
@@ -228,7 +237,14 @@
         self.playControll.titleLabel.text = item.title;
     }
     
-    [self.playControll.swithView setOn:NO];
+    if ([[self readFromPlistByKey:@"onlyUseIJK"] floatValue] == 1) {
+        //只使用ijk，mov和mp4兼容格式大脾全，但高清4kmov播放卡顿
+        [self.playControll.swithView setOn:YES]; //亮
+    }
+    else {
+        [self.playControll.swithView setOn:NO]; //不亮
+    }
+
 	
     [IJKFFMoviePlayerController checkIfFFmpegVersionMatch:YES];
     // [IJKFFMoviePlayerController checkIfPlayerVersionMatch:YES major:1 minor:0 micro:0];
@@ -444,12 +460,33 @@
 {
     if(self.playControll.swithView.on) {
         [self.playControll.swithView setOn:YES];
+	    [self writeToPlist:@"Onlyijkplayer" :@"1"];
     }
     else {
         [self.playControll.swithView setOn:NO];
+	    [self writeToPlist:@"Onlyijkplayer" :@"0"];
     }
 }
-
+-(NSString *)readFromPlistByKey:(NSString *)key
+{
+    
+    NSUserDefaults *myuserDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *xXx = [myuserDefaults stringForKey:key];
+    if (xXx) {
+        return xXx;
+    }
+    else
+        return nil;
+    
+}
+-(void)writeToPlist:(NSString *)key :(NSString *)value
+{
+    
+    NSUserDefaults *myUserDefaults = [NSUserDefaults standardUserDefaults];
+    [myUserDefaults setObject:value forKey:key];
+    [myUserDefaults synchronize];
+    
+}
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     UITouch *anyTouch = [touches anyObject];
