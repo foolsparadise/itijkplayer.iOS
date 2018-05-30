@@ -134,6 +134,8 @@ static NSString * formatTimeInterval(CGFloat seconds)
     [self addSubview:self.bottomView];
     [self.topView addSubview:self.titleLabel];
     [self.topView addSubview:self.backBtn];
+    [self.topView addSubview:self.swithView];
+
     
     [self.bottomView addSubview:self.toolbar];
     [self.bottomView addSubview:self.currentTimeLabel];
@@ -161,10 +163,15 @@ static NSString * formatTimeInterval(CGFloat seconds)
         make.centerY.equalTo(self.topView.centerY);
         make.size.equalTo(CGSizeMake(image.size.width, image.size.height));
     }];
+    [self.swithView makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.right).offset(@-15);
+        make.centerY.equalTo(self.topView.centerY);
+        make.size.equalTo(CGSizeMake(image.size.width, image.size.height));
+    }];
     [self.titleLabel makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topView.top).offset(@0);
         make.left.equalTo(self.backBtn.right).offset(@15);
-        make.right.equalTo(self.topView.right).offset(-image.size.width-15);
+        make.right.equalTo(self.swithView.right).offset(-image.size.width-15);
         make.bottom.equalTo(self.topView.bottom).offset(@0);
     }];
     
@@ -232,6 +239,15 @@ static NSString * formatTimeInterval(CGFloat seconds)
          _backBtn.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     return _backBtn;
+}
+- (UISwitch *)swithView
+{
+    if (!_swithView) {
+        _swithView = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+        _swithView.onTintColor = RGBCOLOR(235, 101, 61);
+        //[_swithView addTarget:self action:@selector(swithViewClick:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _swithView;
 }
 - (UILabel *)titleLabel
 {
