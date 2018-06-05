@@ -461,10 +461,14 @@
     if(self.playControll.swithView.on) {
         [self.playControll.swithView setOn:YES];
 	    [self writeToPlist:@"onlyUseIJK" :@"1"];
+	    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedStringFromTable(@"兼容模式,可解码更多视频格式，下次播放时生效", @"InfoPlist", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil ];
+        [alert show];
     }
     else {
         [self.playControll.swithView setOn:NO];
 	    [self writeToPlist:@"onlyUseIJK" :@"0"];
+	    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedStringFromTable(@"硬件加速模式，尤其是4kmov或4kmp4视频，播放不卡顿，下次播放时生效", @"InfoPlist", nil) delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil ];
+        [alert show];
     }
 }
 -(NSString *)readFromPlistByKey:(NSString *)key
