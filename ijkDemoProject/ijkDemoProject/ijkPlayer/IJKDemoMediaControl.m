@@ -151,7 +151,7 @@ static NSString * formatTimeInterval(CGFloat seconds)
     }];
     
     [self.bottomView makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottom).offset(@10);
+        make.bottom.equalTo(self.mas_bottomMargin).offset(@10);
         make.left.equalTo(self.left);
         make.right.equalTo(self.right);
         make.height.equalTo(@(self.bottomView.image.size.height));
@@ -172,13 +172,13 @@ static NSString * formatTimeInterval(CGFloat seconds)
         make.top.equalTo(self.topView.top).offset(@0);
         make.left.equalTo(self.backBtn.right).offset(@15);
         make.right.equalTo(self.swithView.right).offset(-image.size.width-15);
-        make.bottom.equalTo(self.topView.bottom).offset(@0);
+        make.bottom.equalTo(self.topView.mas_bottomMargin).offset(@0);
     }];
     
     [self.toolbar makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.bottomView.left);
         make.right.equalTo(self.bottomView.right);
-        make.bottom.equalTo(self.bottomView.bottom);
+        make.bottom.equalTo(self.bottomView.mas_bottomMargin);
         make.height.equalTo(@80);
     }];
 
