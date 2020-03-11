@@ -259,15 +259,17 @@
     //        self.player = vc;
     //    }
     
-    // file type check i added 2017-10
-    if ([[self contentTypeOfVideo:self.url] containsString:@"mov"]) {
-        // if mov , default use MPMoviePlayerController
-        IJKMPMoviePlayerController *vc = [[IJKMPMoviePlayerController alloc] initWithContentURL:self.url];
-        vc.controlStyle = MPMovieControlStyleNone;
-        self.player = vc;
-        
-    }
-    else {
+//    // 2017-10 add video file type check
+//    // 2020.3 from iOS13 MPMoviePlayerController is no longer available. Use AVPlayerViewController in AVKit. so removed
+//    if ([[self contentTypeOfVideo:self.url] containsString:@"mov"]) {
+//        // if mov , default use MPMoviePlayerController
+//        IJKMPMoviePlayerController *vc = [[IJKMPMoviePlayerController alloc] initWithContentURL:self.url];
+//        vc.controlStyle = MPMovieControlStyleNone;
+//        self.player = vc;
+//
+//    }
+//    else
+    {
         IJKFFOptions *options = [IJKFFOptions optionsByDefault];
         self.player = [[IJKFFMoviePlayerController alloc] initWithContentURL:self.url withOptions:options];
         
@@ -580,11 +582,13 @@
 - (void)dismissViewController
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"dimissIJKPlayer" object:nil];
-    if ([self.player isKindOfClass:[IJKMPMoviePlayerController class]]) {
-        [self.player shutdown];
-        [self removeMovieNotificationObservers];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }else
+//    // 2020.3 from iOS13 MPMoviePlayerController is no longer available. Use AVPlayerViewController in AVKit. so removed
+//    if ([self.player isKindOfClass:[IJKMPMoviePlayerController class]]) {
+//        [self.player shutdown];
+//        [self removeMovieNotificationObservers];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }
+//    else
     {
         [self dismissViewControllerAnimated:YES completion:nil];
     }

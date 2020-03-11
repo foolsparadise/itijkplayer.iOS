@@ -142,67 +142,67 @@ static NSString * formatTimeInterval(CGFloat seconds)
     [self.bottomView addSubview:self.totalTimeLabel];
     [self.bottomView addSubview:self.videoSlider];
     [self.bottomView addSubview:self.progressView];
-    
-    [self.topView makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top);
-        make.left.equalTo(self.left);
-        make.right.equalTo(self.right);
-        make.height.equalTo(@(self.topView.image.size.height));
+    __weak typeof(self) weakSelf = self;
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.mas_top);
+        make.left.equalTo(weakSelf.mas_left);
+        make.right.equalTo(weakSelf.mas_right);
+        make.height.equalTo(@(weakSelf.topView.image.size.height));
     }];
     
-    [self.bottomView makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.mas_bottomMargin).offset(@10);
-        make.left.equalTo(self.left);
-        make.right.equalTo(self.right);
-        make.height.equalTo(@(self.bottomView.image.size.height));
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(weakSelf.mas_bottomMargin).mas_offset(@10);
+        make.left.equalTo(weakSelf.mas_left);
+        make.right.equalTo(weakSelf.mas_right);
+        make.height.equalTo(@(weakSelf.bottomView.image.size.height));
     }];
     
     UIImage *image = [UIImage imageNamed:@"ico_return_nor"];
-    [self.backBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.left).offset(@15);
-        make.centerY.equalTo(self.topView.centerY);
-        make.size.equalTo(CGSizeMake(image.size.width, image.size.height));
+    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.mas_left).mas_offset(@15);
+        make.centerY.equalTo(weakSelf.topView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(image.size.width, image.size.height));
     }];
-    [self.swithView makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.right).offset(@-15);
-        make.centerY.equalTo(self.topView.centerY);
-        make.size.equalTo(CGSizeMake(image.size.width, image.size.height));
+    [self.swithView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.mas_right).mas_offset(@-15);
+        make.centerY.equalTo(weakSelf.topView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(image.size.width, image.size.height));
     }];
-    [self.titleLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.topView.top).offset(@0);
-        make.left.equalTo(self.backBtn.right).offset(@15);
-        make.right.equalTo(self.swithView.right).offset(-image.size.width-15);
-        make.bottom.equalTo(self.topView.mas_bottomMargin).offset(@0);
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weakSelf.topView.mas_top).mas_offset(@0);
+        make.left.equalTo(weakSelf.backBtn.mas_right).mas_offset(@15);
+        make.right.equalTo(weakSelf.swithView.mas_right).offset(-image.size.width-15);
+        make.bottom.equalTo(weakSelf.topView.mas_bottomMargin).mas_offset(@0);
     }];
     
-    [self.toolbar makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.bottomView.left);
-        make.right.equalTo(self.bottomView.right);
-        make.bottom.equalTo(self.bottomView.mas_bottomMargin);
+    [self.toolbar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.bottomView.mas_left);
+        make.right.equalTo(weakSelf.bottomView.mas_right);
+        make.bottom.equalTo(weakSelf.bottomView.mas_bottomMargin);
         make.height.equalTo(@80);
     }];
 
-    [self.currentTimeLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.bottomView.left).offset(@10);
-        make.bottom.equalTo(self.toolbar.top);
+    [self.currentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.bottomView.mas_left).mas_offset(@10);
+        make.bottom.equalTo(weakSelf.toolbar.mas_top);
     }];
     
-    [self.totalTimeLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.bottomView.right).offset(@-10);
-        make.bottom.equalTo(self.toolbar.top);
+    [self.totalTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(weakSelf.bottomView.mas_right).mas_offset(@-10);
+        make.bottom.equalTo(weakSelf.toolbar.mas_top);
     }];
     
-    [self.videoSlider makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.currentTimeLabel.right).offset(@10);
-        make.right.equalTo(self.totalTimeLabel.left).offset(@-10);
-        make.centerY.equalTo(self.totalTimeLabel.centerY);
+    [self.videoSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.currentTimeLabel.mas_right).mas_offset(@10);
+        make.right.equalTo(weakSelf.totalTimeLabel.mas_left).mas_offset(@-10);
+        make.centerY.equalTo(weakSelf.totalTimeLabel.mas_centerY);
         make.height.equalTo(@10);
     }];
     
-    [self.progressView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.currentTimeLabel.right).offset(@10);
-        make.right.equalTo(self.totalTimeLabel.left).offset(@-10);
-        make.centerY.equalTo(self.totalTimeLabel.centerY).offset(@0.5);
+    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.currentTimeLabel.mas_right).mas_offset(@10);
+        make.right.equalTo(weakSelf.totalTimeLabel.mas_left).mas_offset(@-10);
+        make.centerY.equalTo(weakSelf.totalTimeLabel.mas_centerY).mas_offset(@0.5);
         make.height.equalTo(@10);
     }];
     
